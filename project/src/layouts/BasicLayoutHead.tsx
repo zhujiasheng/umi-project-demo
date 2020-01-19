@@ -14,25 +14,23 @@ const pageList = [], pageKey = {
   7:"其他"
 }, page = '/page';
 
-for(let i = 1; i < 6; i++){
+for(let i = 1; i < 5; i++){
   let obj = {};
   obj = {
     name: pageKey[i],
     path: page + i
   };
-
-  if (i == 6) {
-    obj = {
-      name: pageKey[i],
-      child:[
-        {path:'/page8',name:'page8'},
-        {path:'/page9',name:'page9'}
-       ]
-    };
-  }
-
   pageList.push(obj);
 }
+
+pageList.push({
+  name: pageKey[5],
+  path: page+'5',
+  child:[
+    {name:'page5',path:page+'5'},
+    {name:'page6',path:page+'6'}
+  ]
+});
 
 const BasicLayout: React.FC = props => {
   return (

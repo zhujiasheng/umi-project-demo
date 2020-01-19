@@ -4,7 +4,7 @@ import { Menu } from 'antd';
 const { SubMenu } = Menu;
 
 class App extends React.Component {
-  constructor (props) {
+  constructor (props:any) {
     super(props)
   }
 
@@ -12,10 +12,9 @@ class App extends React.Component {
     current: '/page1',
   };
 
-  handleClick = e => {
-    console.log('click ', e);
+  handleClick = (e:Object) => {
     this.setState({
-      current: e.key,
+      current: e.key
     });
 
     router.push({
@@ -23,28 +22,13 @@ class App extends React.Component {
     })
   };
 
-  setSubMenu = e => {
-    const { child } = e;
-    console.log(e,'ee')
-    return <SubMenu
-      title={
-        <span className="submenu-title-wrapper">
-          {e.title}
-        </span>
-      }
-      key={e.path}
-      >
-        <Menu.ItemGroup title="Item 1">
-         {child.map(it => <Menu.Item key={it.path}>{it.name}</Menu.Item>)}
-        </Menu.ItemGroup>
-    </SubMenu>
-  } 
-
-  setMenuItem = e => {
-    console.log(e,'e')
-    // if (Array.isArray(e.child) && e.child.length) {
-    //   return this.setSubMenu(e);
-    // }
+  setMenuItem = (e:Object) => {
+    if (Array.isArray(e.child) && e.child.length) {
+      return <SubMenu key={e.path} title={
+              <span className="submenu-title-wrapper">{e.name} </span>}>
+        { e.child.map(it => <Menu.Item key={it.path}>{it.name}</Menu.Item>) }
+      </SubMenu>;
+    }
     return <Menu.Item key={e.path}>{e.name}</Menu.Item>
   }
 
@@ -52,24 +36,10 @@ class App extends React.Component {
     return Array.isArray(e.child) && e.child.length;
   }
 
-  setMenu = e => {
+  setMenu = (e:Object) => {
     let { pageList } = this.props;
-    console.log(pageList,'pageList');
-    
     return <Menu onClick={this.handleClick} selectedKeys={[this.state.current]} mode="horizontal">
-      {
-        pageList.map((it,idx) => this.setMenuItem(it))
-      }
-       <SubMenu
-          title={
-            <span className="submenu-title-wrapper">
-              page
-            </span>
-          }
-        >
-         <Menu.Item key="/page8">page8</Menu.Item>
-         <Menu.Item key="/page9">page9</Menu.Item>
-        </SubMenu>
+      { pageList.map((it,idx) => this.setMenuItem(it)) }
     </Menu>
   }
 

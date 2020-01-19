@@ -3,7 +3,6 @@ import BasicLayoutHead from './BasicLayoutHead';
 import BasicLayoutFoot from './BasicLayoutFoot';
 
 const BasicLayout: React.FC = props => {
-  console.log(props,'props')
   const { pathname } = props.location;
   let mytemlate = '';
 
@@ -13,7 +12,7 @@ const BasicLayout: React.FC = props => {
    default : mytemlate = <div>
       <BasicLayoutHead/>
       {props.children}
-      <BasicLayoutFoot/>
+      {/* <BasicLayoutFoot/> */}
     </div>
     break;
   }

@@ -1,9 +1,8 @@
 import React from 'react';
-import style from './page2.css';
 
 export default function() {
   return (
-    <div className={style.page2}>
+    <div>
       page2
     </div>
   );
