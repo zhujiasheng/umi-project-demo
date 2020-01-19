@@ -7,7 +7,7 @@ const config: IConfig =  {
   treeShaking: true,
   hash:true,
   routes,
-  plugins
+  plugins,
 }
 
 export default config;
